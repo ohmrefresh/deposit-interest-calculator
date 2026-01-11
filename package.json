@@ -2,13 +2,14 @@
   "name": "deposit-interest-calculator",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "homepage": "https://ohmrefresh.github.io/deposit-interest-calculator",
   "scripts": {
-    "dev": "bunx --bun vite",
-    "build": "bunx --bun vite build",
-    "build:dev": "bunx --bun vite build --mode development",
+    "dev": "vite",
+    "build": "vite build",
+    "build:dev": "vite build --mode development",
     "lint": "bunx eslint .",
-    "preview": "bunx --bun vite preview"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.1.14",

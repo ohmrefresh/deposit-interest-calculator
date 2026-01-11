@@ -5,7 +5,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base: "/deposit-interest-calculator/",
+  base: mode === "production" ? "/deposit-interest-calculator/" : "/",
   server: {
     port: 3000,
     open: true,
@@ -17,14 +17,13 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    outDir: 'build',
+    outDir: 'dist',
     sourcemap: false,
+    chunkSizeWarningLimit: 600,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
-          pdf: ["jspdf", "html2canvas"],
-          excel: ["xlsx"],
           ui: [
             "@radix-ui/react-dialog",
             "@radix-ui/react-select",

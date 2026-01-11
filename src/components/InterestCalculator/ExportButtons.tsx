@@ -8,8 +8,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Download, FileSpreadsheet, FileText, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-import jsPDF from "jspdf";
-import * as XLSX from "xlsx";
 import { CalculationResult, formatNumber, InterestTier } from "@/lib/interest-calculator";
 
 interface ExportButtonsProps {
@@ -56,6 +54,9 @@ export function ExportButtons({
         return;
       }
 
+      // Dynamically import jsPDF
+      const { default: jsPDF } = await import('jspdf');
+      
       // Create PDF
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pageWidth = pdf.internal.pageSize.getWidth();
@@ -196,6 +197,9 @@ export function ExportButtons({
   const exportToExcel = async () => {
     setIsExporting(true);
     try {
+      // Dynamically import xlsx
+      const XLSX = await import('xlsx');
+      
       const workbook = XLSX.utils.book_new();
 
       // Summary sheet
