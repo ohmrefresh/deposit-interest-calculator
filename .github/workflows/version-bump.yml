@@ -1,0 +1,82 @@
+name: Version Bump After Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          # Extract version from tag (e.g., v1.4.2 -> 1.4.2)
+          VERSION="${{ github.event.release.tag_name }}"
+          VERSION="${VERSION#v}"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Extracted version: $VERSION"
+      
+      - name: Update package.json version
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          
+          # Update root package.json
+          bun run jq --arg v "$VERSION" '.version = $v' package.json > package.json.tmp
+          mv package.json.tmp package.json
+          
+          # Update frontend package.json
+          if [ -f "frontend/package.json" ]; then
+            bun run jq --arg v "$VERSION" '.version = $v' frontend/package.json > frontend/package.json.tmp
+            mv frontend/package.json.tmp frontend/package.json
+          fi
+          
+          echo "Updated package.json to version $VERSION"
+      
+      - name: Update CHANGELOG.md
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          DATE=$(date +%Y-%m-%d)
+          
+          # Check if version already exists in CHANGELOG
+          if grep -q "## \[$VERSION\]" CHANGELOG.md; then
+            echo "Version $VERSION already in CHANGELOG.md"
+          else
+            # Add version header after the main title
+            sed -i "3i\\\\n## [$VERSION] - $DATE\\n\\nSee [GitHub Release v$VERSION](https://github.com/${{ github.repository }}/releases/tag/$VERSION) for details.\\n" CHANGELOG.md
+            echo "Added version $VERSION to CHANGELOG.md"
+          fi
+      
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Commit and push changes
+        run: |
+          VERSION="${{ steps.get_version.outputs.version }}"
+          
+          git add package.json frontend/package.json CHANGELOG.md
+          
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Bump version to $VERSION after release"
+            git push origin main
+            echo "Pushed version bump commit"
+          fi
