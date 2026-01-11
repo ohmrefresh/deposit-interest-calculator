@@ -15,7 +15,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/deposit-interest-calculator">
         <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Index />} />
