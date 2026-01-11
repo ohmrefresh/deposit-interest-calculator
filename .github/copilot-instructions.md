@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a **Thai Interest Calculator** single-page application built with React, TypeScript, Vite, and shadcn/ui. Originally created via Lovable.dev, it calculates interest using tiered rates with high precision (Decimal.js).
+This is a **Thai Interest Calculator** single-page application built with React, TypeScript, Vite, and shadcn/ui. it calculates interest using tiered rates with high precision (Decimal.js).
 
 **Core Purpose:** Calculate simple/compound interest with support for multiple interest rate tiers, historical tracking, preset management, and data export (PDF/Excel).
 
@@ -45,7 +45,6 @@ bun run lint       # ESLint check
 ```
 
 ### Key Configuration Files
-- **Vite:** [`vite.config.ts`](../vite.config.ts) - React SWC plugin, path alias `@` → `src/`, lovable-tagger in dev mode
 - **Tailwind:** [`tailwind.config.ts`](../tailwind.config.ts) - CSS variables for theming, custom color palette (success/warning/etc)
 - **shadcn/ui:** [`components.json`](../components.json) - Component generation config, path aliases match Vite
 
@@ -154,10 +153,6 @@ const amount = parseFloat(depositAmount);
 - **Schema:** Arrays of JSON objects, max 50 entries for history
 - **No API calls** - entirely client-side application
 
-### Lovable.dev Integration
-- `lovable-tagger` plugin in dev mode tags components for Lovable editor
-- Project editable via Lovable web UI (see README)
-- Changes sync bidirectionally between local and Lovable
 
 ## Testing & Debugging
 
