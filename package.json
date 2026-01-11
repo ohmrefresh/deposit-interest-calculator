@@ -1,8 +1,8 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "deposit-interest-calculator",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "homepage": "https://ohmrefresh.github.io/deposit-interest-calculator",
   "scripts": {
     "dev": "bunx --bun vite",
     "build": "bunx --bun vite build",
