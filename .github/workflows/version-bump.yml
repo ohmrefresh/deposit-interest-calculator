@@ -39,12 +39,6 @@ jobs:
           bun run jq --arg v "$VERSION" '.version = $v' package.json > package.json.tmp
           mv package.json.tmp package.json
           
-          # Update frontend package.json
-          if [ -f "frontend/package.json" ]; then
-            bun run jq --arg v "$VERSION" '.version = $v' frontend/package.json > frontend/package.json.tmp
-            mv frontend/package.json.tmp frontend/package.json
-          fi
-          
           echo "Updated package.json to version $VERSION"
       
       - name: Update CHANGELOG.md
@@ -70,7 +64,7 @@ jobs:
         run: |
           VERSION="${{ steps.get_version.outputs.version }}"
           
-          git add package.json frontend/package.json CHANGELOG.md
+          git add package.json CHANGELOG.md
           
           # Check if there are changes to commit
           if git diff --staged --quiet; then
