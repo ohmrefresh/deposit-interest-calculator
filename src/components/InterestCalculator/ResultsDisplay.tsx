@@ -9,7 +9,6 @@ import {
 import { CalculationResult, formatNumber, InterestTier } from "@/lib/interest-calculator";
 import { Clock, CheckCircle2, BarChart3, ChevronRight } from "lucide-react";
 import { DailyBreakdownTable } from "./DailyBreakdownTable";
-import { ExportButtons } from "./ExportButtons";
 import { SummaryDashboard } from "./SummaryDashboard";
 
 interface ResultsDisplayProps {
@@ -33,22 +32,11 @@ export function ResultsDisplay({
 }: ResultsDisplayProps) {
   return (
     <div className="animate-slide-up space-y-6">
-      <div className="flex items-center justify-between">
-        <div className="section-header flex-1">
-          <div className="p-2 bg-success/10 rounded-xl">
-            <BarChart3 className="h-4 w-4 text-success" />
-          </div>
-          <h2 className="text-base font-semibold text-foreground">Calculation Results</h2>
+      <div className="section-header">
+        <div className="p-2 bg-success/10 rounded-xl">
+          <BarChart3 className="h-4 w-4 text-success" />
         </div>
-        <ExportButtons
-          result={result}
-          depositAmount={depositAmount}
-          startDate={startDate}
-          endDate={endDate}
-          tiers={tiers}
-          interestType={interestType}
-          interestApply={interestApply}
-        />
+        <h2 className="text-base font-semibold text-foreground">Calculation Results</h2>
       </div>
 
       {/* Animated Summary Dashboard */}
