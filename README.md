@@ -15,7 +15,6 @@ A modern, feature-rich Thai deposit interest calculator built with React, TypeSc
 - **Date Range Support**: Calculate interest for any time period
 
 ### 📊 **Rich Visualizations**
-- **Interactive Charts**: Beautiful line charts showing interest growth over time (powered by Recharts)
 - **Animated Counters**: Smooth number animations for engaging data presentation
 - **Summary Dashboard**: At-a-glance metrics with color-coded cards
 - **Progress Indicators**: Visual return on investment tracking
@@ -86,7 +85,6 @@ bun run lint         # Run ESLint
 - **[shadcn/ui](https://ui.shadcn.com/)** - Re-usable component library
 - **[Radix UI](https://www.radix-ui.com/)** - Accessible component primitives (alert-dialog, dialog, dropdown-menu, label, scroll-area, select, tabs, toast, tooltip)
 - **[Lucide React](https://lucide.dev/)** - Beautiful icon set
-- **[Recharts](https://recharts.org/)** - Composable charting library
 
 ### State Management
 - **[TanStack Query](https://tanstack.com/query)** - Powerful data synchronization

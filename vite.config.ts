@@ -20,7 +20,6 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: {
           vendor: ["react", "react-dom", "react-router-dom"],
-          charts: ["recharts"],
           pdf: ["jspdf", "html2canvas"],
           excel: ["xlsx"],
           ui: [

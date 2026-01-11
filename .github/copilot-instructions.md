@@ -140,7 +140,6 @@ const amount = parseFloat(depositAmount);
 - **date-fns** - Date utilities (though most date logic is custom)
 - **@tanstack/react-query** - Query client provider (currently unused but configured)
 - **lucide-react** - Icon library (use for all icons)
-- **recharts** - Chart library for interest growth visualization
 
 ### shadcn/ui Ecosystem
 - **Radix UI** - Headless components (@radix-ui/react-*)
