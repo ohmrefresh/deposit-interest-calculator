@@ -178,7 +178,7 @@ This project is licensed under the MIT License.
 
 ## 🔗 Links
 
-- **Live Demo**: [Coming Soon]
+- **Live Demo**: [Live](https://ohmrefresh.github.io/deposit-interest-calculator/)
 - **Issues**: [GitHub Issues](https://github.com/ohmrefresh/deposit-interest-calculator/issues)
 
 ## 📞 Support
